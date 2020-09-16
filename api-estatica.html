@@ -1,0 +1,73 @@
+<!--
+Universidade Federal Rural de Pernambuco
+Curso: Bacharelado em Sistemas de Informação
+Aluno: João Luiz da Silva Ramos - Polo: Palmares
+Disciplina: Sistemas Distribuídos - 7º Período
+Profª: Juliana Diniz
+Tutor Virtual: Geraldo Gomes
+ -->
+
+ <!DOCTYPE html>
+ <html lang="pt-br">
+ 
+ <head>
+   <title>Projeto - Sistemas Distribuídos (2020.1)</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ </head>
+ 
+ <body>
+ 
+   <div class="jumbotron text-center">
+     <h1>Consumindo API Estática - João Luiz</h1>
+ 
+     <div class="container">
+       <div class="row">
+         <div class="col-sm-12">
+ 
+           <form>
+             <input id="nomeArtista" class="form-control" type="text" placeholder="Mantenha este campo vazio (ou não)">
+             <br />
+             <a class="btn btn-primary" onclick="buscarArtistas(document.getElementById('nomeArtista').value)">Pressione aqui</a>
+           </form>
+ 
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 id="name"></h3>
+        
+      </div>
+    </div>
+  </div>
+  <br />
+
+   <script>
+
+       function buscarArtistas(artista){
+
+            $("#name").empty();
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://api-deezer.netlify.app/api.json",
+                "method": "GET"
+            }
+
+            $.ajax(settings).done(function (response) {
+            console.log(response);
+            $("#name").append("Pressione F12 para visualizar o objeto de resposta ;)")
+            });}
+   </script>
+ </body>
+ 
+ </html>

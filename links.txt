@@ -1,0 +1,5 @@
+Vídeo: https://www.youtube.com/watch?v=UJtVRz_OmPY&feature=youtu.be
+
+Parte I do Projeto hospedada no Netlify: https://api-deezer.netlify.app/
+
+API Estática hospedada no Netlify: https://api-deezer.netlify.app/api.json

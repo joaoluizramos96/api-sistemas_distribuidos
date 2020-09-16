@@ -1,0 +1,90 @@
+<!--
+Universidade Federal Rural de Pernambuco
+Curso: Bacharelado em Sistemas de Informação
+Aluno: João Luiz da Silva Ramos - Polo: Palmares
+Disciplina: Sistemas Distribuídos - 7º Período
+Profª: Juliana Diniz
+Tutor Virtual: Geraldo Gomes
+ -->
+
+ <!DOCTYPE html>
+ <html lang="pt-br">
+ 
+ <head>
+   <title>Projeto - Sistemas Distribuídos (2020.1)</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ </head>
+ 
+ <body>
+ 
+   <div class="jumbotron text-center">
+     <h1>Top 10 - Músicas</h1>
+     <h2>Deezer</h2>
+ 
+     <div class="container">
+       <div class="row">
+         <div class="col-sm-12">
+ 
+           <form>
+             <input id="nomeArtista" class="form-control" type="text" placeholder="Digite o nome do artista">
+             <br />
+             <a class="btn btn-primary" onclick="buscarArtistas(document.getElementById('nomeArtista').value)">Buscar</a>
+           </form>
+ 
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-12">
+         <h3 id="name"></h3>
+         <img id="picture" src="" alt="">
+         <p id="title"></p>
+         
+       </div>
+     </div>
+   </div>
+   <br />
+ 
+   <script>
+
+       function buscarArtistas(artista){
+
+            $("#name").empty();
+            $("#picture").empty();
+            $("#title").empty();
+
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://deezerdevs-deezer.p.rapidapi.com/search?q=" + artista,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                    "x-rapidapi-key": "a9b2a659d9msh72c3634862390e2p1f856ejsn62022b3ffa9a"
+                }
+            }
+
+            var i = 0;
+            var posicao = 1;
+
+            $.ajax(settings).done(function (response) {
+            console.log(response);
+                $("#name").append("Nome da banda: " +  response.data[0].artist.name);
+                for (i=0; i<10; i++){
+                    //$("#picture").append("Nome da banda: " +  response.data[i].artist.picture_medium);
+                    //"/n";
+                    $("#title").append("<aside> # " + posicao + ": " +  response.data[i].title + "</aside>");
+                    posicao++;
+                }});}
+   </script>
+ </body>
+ 
+ </html>
